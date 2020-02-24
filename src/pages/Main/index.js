@@ -3,7 +3,19 @@ import { Keyboard } from 'react-native';
 import Icon from 'react-native-vector-icons/MaterialIcons';
 import api from '../../services/api';
 
-import { Container, Form, SubmitButton, Input } from './styles';
+import {
+    Container,
+    Form,
+    SubmitButton,
+    Input,
+    List,
+    User,
+    Avatar,
+    Name,
+    Bio,
+    ProfileButton,
+    ProfileButtonText,
+} from './styles';
 
 export default class Main extends React.Component {
     state = {
@@ -48,6 +60,23 @@ export default class Main extends React.Component {
                         <Icon name="add" size={20} color="#fff" />
                     </SubmitButton>
                 </Form>
+                <List
+                    data={users}
+                    keyExtractor={user => user.login}
+                    renderItem={({ item }) => (
+                        <User>
+                            <Avatar source={{ uri: item.avatar }} />
+                            <Name>{item.name}</Name>
+                            <Bio>{item.bio}</Bio>
+
+                            <ProfileButton onPress={() => {}}>
+                                <ProfileButtonText>
+                                    Ver perfil
+                                </ProfileButtonText>
+                            </ProfileButton>
+                        </User>
+                    )}
+                />
             </Container>
         );
     }
